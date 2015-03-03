@@ -1,0 +1,32 @@
+<div id="top-box" class="box">
+  <h1 id="main-headline">Twoterville, USA!</h1>
+  <span id="tagline">
+    Your one-stop shop for FREE Twotes!
+  </span>
+
+  <div id="loginout"></div>
+</div>
+
+<div id="twotes-box" class="box">
+  <h2 id="new-twote-headline">Twote a twat!</h2>
+  <form id="new-twote">
+    <input id="new-text" type="text" value="What's new, twitty-poo?">
+    <input id="new-submit" type="submit" value="Twote it!">
+  </form>
+
+  <h2 id="twotes-headline">Twotes</h2>
+  <ul id="twotes-list">
+    {{> twotes_chunk}}
+  </ul>
+</div>
+
+<div id="users-box" class="box">
+  <h2 id="users-headline">Users</h2>
+  <ul id="users-list">
+    {{#each users}}
+    <li class="user {{this._id}}" highlighted="false" username="{{this.username}}">
+      {{this.username}}
+    </li>
+    {{/each}}
+  </ul>
+</div>

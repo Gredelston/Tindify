@@ -1,0 +1,19 @@
+{
+  "name": "Tinderfy",
+  "version": "1.0.0",
+  "description": "Tinder + Spotify - Client-side frameworks = Profit!",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Gredelston/Tinderfy"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gredelston/Tinderfy/issues"
+  },
+  "homepage": "https://github.com/Gredelston/Tinderfy"
+}

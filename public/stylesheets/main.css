@@ -1,0 +1,111 @@
+/* FONTS */
+
+* {
+	font-family: 'Muli', sans-serif;
+}
+
+#main-headline {
+	font-family: 'Rock Salt', cursive;
+}
+
+h1, h2 {
+	font-family: 'Lobster Two', cursive;
+}
+
+.twote {
+	font-size: 16px;
+}
+
+.twote-text {
+	font-family: 'Indie Flower', cursive;
+	font-size: 24px;
+}
+
+/* BOXES */
+
+div {
+	margin-left: 1.5%;
+	margin-right: 1.5%;
+}
+
+body {
+	background-color: #ecf0f1;
+}
+
+#top-box {
+	padding-left: 1.5%;
+	padding-right: 1.5%;
+	padding-bottom: 2%;
+	background-color: #27ae60;
+}
+
+#twotes-box {
+	width: 58%;
+	float: left;
+	background-color: #3498db;
+}
+
+#users-box {
+	width: 34%;
+	float: right;
+	background-color: #f39c12;
+}
+
+/*.box {
+	border-style: solid;
+	border-width: 2px;
+}*/
+
+.box {
+	border-right-color: #7f8c8d;
+	border-bottom-color: #7f8c8d;
+	border-top-color: #bdc3c7;
+	border-left-color: #bdc3c7;
+	border-style: solid;
+	border-width: 1px;
+	background-color: #bdc3c7;
+	margin-top: 2%;
+}
+
+h2 {
+	margin-left: 5%;
+}
+
+/* TWOTES */
+#twotes-list {
+	list-style-type: none;
+	padding-bottom: 2%;
+}
+
+input, button {
+	border-left-color: #7f8c8d;
+	border-top-color: #7f8c8d;
+	border-right-color: #bdc3c7;
+	border-bottom-color: #bdc3c7;
+	border-width: 1px;
+}
+
+#new-twote {
+	margin-left: 9%;
+}
+
+/* USERS */
+#users-list {
+	list-style-type: none;
+	padding-bottom: 2%;
+}
+
+li {
+	background-color: #bdc3c7;
+	margin-bottom: 2px;
+	border-style: solid;
+	border-left-color: #7f8c8d;
+	border-top-color: #7f8c8d;
+	border-width: 1px;
+	margin-right: 14%;
+	padding: 3px;
+}
+
+.delete-button {
+	background-color: #e74c3c;
+}
