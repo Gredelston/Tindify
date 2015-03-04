@@ -1,7 +1,7 @@
 // Connecting to MongoDB
 var mongoose = require('mongoose');
 
-var mongoURI = process.env.MONGOURI || "mongodb://twoteuser:twote@ds039411.mongolab.com:39411/olinjs";
+var mongoURI = process.env.MONGOURI || "mongodb://tinderfyuser:tinderfy@ds039411.mongolab.com:39411/olinjs";
 mongoose.connect(mongoURI);
 
 var db = mongoose.connection;
@@ -11,19 +11,18 @@ db.once('open', function (callback) {
 });
 
 // Defining schemas
-var userSchema = mongoose.Schema({
-  username: String
-});
-
-var twoteSchema = mongoose.Schema({
-  user: String,
-  text: String
-});
+/**
+ * var userSchema = mongoose.Schema({
+ * username: String
+ * });
+ */
 
 // Defining models
+/**
 var User = mongoose.model('User', userSchema);
-var Twote = mongoose.model('Twote', twoteSchema);
+ */
 
 // Exports
-module.exports.User = User;
-module.exports.Twote = Twote;
+/**
+ * module.exports.User = User;
+ */

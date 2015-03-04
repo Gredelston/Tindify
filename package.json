@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Gredelston/Tinderfy/issues"
   },
-  "homepage": "https://github.com/Gredelston/Tinderfy"
+  "homepage": "https://github.com/Gredelston/Tinderfy",
+  "devDependencies": {
+    "express": "^4.12.2"
+  }
 }
