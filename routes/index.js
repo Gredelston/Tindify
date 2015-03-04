@@ -6,7 +6,7 @@ var mg_models = require('./mg_models');
 
 /* Renders the homepage (/) */
 var home = function(req, res) {
-  res.render('home', {title: 'Tinderfy'});
+  res.render('home', {title: 'Tindify'});
 };
 
 module.exports.home = home;
