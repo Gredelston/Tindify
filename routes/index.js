@@ -3,10 +3,15 @@ var path = require('path');
 var mg_models = require('./mg_models');
 
 // GET functions
+var routes = {};
 
 /* Renders the homepage (/) */
-var home = function(req, res) {
+routes.home = function(req, res) {
   res.render('home', {title: 'Tindify'});
-};
+}
 
-module.exports.home = home;
+routes.hello = function(req, res) {
+  res.render('hello', {title: 'Logged in'});
+}
+
+module.exports = routes;
