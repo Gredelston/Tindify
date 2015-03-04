@@ -17,7 +17,7 @@ app.set('view engine', '.hbs');
 // Spotify OAuth
 var client_id = process.env.SPOTIFY_KEY;
 var client_secret = process.env.SPOTIFY_SECRET;
-var redirect_uri = 'http://localhost:3000/hello'; 
+var redirect_uri = 'http://localhost:3000/authed'; 
 var stateKey = 'spotify_auth_state';
 
 app.use(logger('dev'));
@@ -32,12 +32,8 @@ app.use(session({
 }));
 
 app.get('/', index.home);
-app.get('/hello', index.hello);
-
-var PORT = process.env.PORT || 3000;
-app.listen(PORT, function() {
-  console.log("Application running on port:", PORT);
-});
+app.get('/authed', index.authed);
+// ^^^ Need to have a check for logged in
 
 app.get('/login', function(req, res) {
 
@@ -65,3 +61,8 @@ var generateRandomString = function(length) {
   }
   return text;
 };
+
+var PORT = process.env.PORT || 3000;
+app.listen(PORT, function() {
+  console.log("Application running on port:", PORT);
+});

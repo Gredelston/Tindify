@@ -10,8 +10,8 @@ routes.home = function(req, res) {
   res.render('home', {title: 'Tindify'});
 }
 
-routes.hello = function(req, res) {
-  res.render('hello', {title: 'Logged in'});
+routes.authed = function(req, res) {
+  res.render('authed', {title: 'logged in'});
 }
 
 module.exports = routes;
