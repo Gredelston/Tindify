@@ -1,8 +1,14 @@
 var url = require('url');
 var path = require('path');
+var querystring = require('querystring');
 var mg_models = require('./mg_models');
 
-// GET functions
+// Spotify OAuth
+var client_id = process.env.SPOTIFY_KEY;
+var client_secret = process.env.SPOTIFY_SECRET;
+var redirect_uri = 'http://localhost:3000/authed'; 
+var stateKey = 'spotify_auth_state';
+
 var routes = {};
 
 /* Renders the homepage (/) */
