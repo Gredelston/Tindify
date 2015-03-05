@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: #98A69E;
+  background-color: #22221F;
 }
 h1 {
   font-family: 'Roboto', sans-serif;
@@ -38,7 +38,7 @@ div#nav {
   color: #ECF0F1;
   text-align: center;
   font-size: 150%;
-  background-color: #3498DB;
+  background-color: #3B3C36;
 }
 div#nav h1 {
   font-family: 'Roboto', sans-serif;
