@@ -10,7 +10,7 @@ h1 {
   color: #ECF0F1;
 }
 h2 {
-  text-align: left;
+  text-align: center;
   font-weight: 800;
   font-size: 150%;
   margin: 15px 15px 15px;
@@ -25,6 +25,10 @@ p {
 a {
   text-decoration: none;
   color: #ECF0F1;
+}
+a#login {
+  font-size: 150%;
+  margin: 0px 15px;
 }
 div#nav {
   width: 100px;
