@@ -27,7 +27,7 @@ a {
   color: #ECF0F1;
 }
 div#nav {
-  width: 200px;
+  width: 100px;
   float: left;
   display: inline;
   height: 759px;
@@ -42,12 +42,18 @@ div#nav {
 }
 div#nav h1 {
   font-family: 'Roboto', sans-serif;
-  font-size: 200%;
-  margin: 15px 0;
+  font-size: 140%;
+  margin: 0px 0px 15px;
 }
 div#nav a {
-  font-size: 125%;
-  margin: 15px; 
+  font-size: 100%;
+  float: left;
+}
+div#nav a#nav {
+  margin-top: 15px;
+}
+div#nav img {
+  margin-left: 15px;
 }
 div#main {
   width: 500;
