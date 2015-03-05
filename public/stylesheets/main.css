@@ -50,7 +50,8 @@ div#nav a {
   float: left;
 }
 div#nav a#nav {
-  margin-top: 15px;
+  text-align: center;
+  padding: 10px 15px 0px 15px;
 }
 div#nav img {
   margin-left: 15px;
