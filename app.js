@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
 var index  = require('./routes/index');
 
-var authenticate = require('./spotifyToken')
+var authenticate = require('./routes/spotifyToken')
 
 var app = express();
 
