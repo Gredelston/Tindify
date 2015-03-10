@@ -2,13 +2,15 @@ var url = require('url');
 var path = require('path');
 var querystring = require('querystring');
 
-var spotifyAuthKeys = require('./spotifyAuthKeys');
-var mg_models = require('./mg_models');
-var spotifyCalls = require('./spotifyCalls');
+// var spotifyAuthKeys = require('./spotifyAuthKeys');
+// var mg_models = require('./mg_models');
+// var spotifyCalls = require('./spotifyCalls');
+var authenticate = require('./spotifyToken');
 
 // Spotify OAuth
 var redirect_uri = 'http://localhost:3000/authed'; 
 var stateKey = 'spotify_auth_state';
+var client_id = require('./spotifyAuthKeys').client_id;
 
 var routes = {};
 
@@ -22,7 +24,7 @@ routes.authed = function(req, res) {
 }
 
 routes.getUser = function(req, res) {
-  res.render(spotifyCalls.getUser(client_id, client_secret));
+  "https://api.spotify.com/v1/users/gredelston/playlists"
 }
 
 routes.login = function(req, res) {

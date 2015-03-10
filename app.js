@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
 var index  = require('./routes/index');
 
-var authenticate = require('./routes/spotifyToken')
+var passport = require('./routes/spotifyToken')
 
 var app = express();
 
@@ -29,6 +29,7 @@ app.use(session({
 app.get('/', index.home);
 app.get('/login', index.login);
 app.get('/authed', index.authed);
+app.get('/getUser', passport.authenticate('spotify', {scope: ['user-read-private playlist-read-private']}), index.getUser);
 
 var PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {
