@@ -25,11 +25,13 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get('/', index.home);
 app.get('/login', index.login);
 app.get('/authed', index.authed);
-app.get('/getUser', passport.authenticate('spotify', {scope: ['user-read-private playlist-read-private']}), index.getUser);
+app.get('/getUser', passport.authenticate('spotify'), index.getUser);
 
 var PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {

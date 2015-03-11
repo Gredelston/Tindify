@@ -1,6 +1,7 @@
 var url = require('url');
 var path = require('path');
 var querystring = require('querystring');
+var https = require('https');
 
 // var spotifyAuthKeys = require('./spotifyAuthKeys');
 // var mg_models = require('./mg_models');
@@ -25,7 +26,15 @@ routes.authed = function(req, res) {
 }
 
 routes.getUser = function(req, res) {
-  "https://api.spotify.com/v1/users/gredelston/playlists"
+  console.log("GET USER GET USER GET USER");
+  https.get("https://api.spotify.com/v1/users/1236809392/playlists",
+    function (response) {
+      response.setEncoding('utf8');
+      response.on("data", function(chunk) {
+        console.log("BODY: " + chunk)
+      })
+    });
+  res.render('home', {title: 'TTINDINDS'});
 }
 
 routes.login = function(req, res) {
