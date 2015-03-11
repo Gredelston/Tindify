@@ -11,6 +11,7 @@ var authenticate = require('./spotifyToken');
 var redirect_uri = 'http://localhost:3000/authed'; 
 var stateKey = 'spotify_auth_state';
 var client_id = require('./spotifyAuthKeys').client_id;
+var mg_models = require('./mg_models');
 
 var routes = {};
 
@@ -29,6 +30,10 @@ routes.getUser = function(req, res) {
 
 routes.login = function(req, res) {
 
+  var client_id = process.env.SPOTIFY_KEY;
+  var client_secret = process.env.SPOTIFY_SECRET;
+  var redirect_uri = 'http://localhost:3000/authed';
+  var stateKey = 'spotify_auth_state';
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
 
