@@ -1,4 +1,4 @@
--Login check/redirect
+DONE-Login check/redirect
 -Retrieve 30-second clip
 -Play 30-second clip in browser
 -Create a playlist

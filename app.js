@@ -63,7 +63,12 @@ app.get('/login',
 app.get('/authed',
     passport.authenticate('spotify', {scope: 'user-read-private user-read-email'}),
     index.authed);
-app.get('/getUser',	index.getUser);
+app.get('/getUser',	ensureAuthenticated, index.getUser);
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login');
+}
 
 var PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {
