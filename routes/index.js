@@ -4,9 +4,9 @@ var querystring = require('querystring');
 var https = require('https');
 var request = require('request');
 
-// var spotifyAuthKeys = require('./spotifyAuthKeys');
-// var mg_models = require('./mg_models');
-// var spotifyCalls = require('./spotifyCalls');
+// Play audio
+var lame = require('lame');
+var Speaker = require('speaker');
 
 // Spotify OAuth
 var redirect_uri = 'http://localhost:3000/authed'; 
@@ -37,7 +37,26 @@ routes.getUser = function(req, res) {
   request.get(options, function (error, response, body) {
       console.log("BODY: " + body)
     });
-  res.render('home', {title: 'TTINDINDS'});
+  res.render('home', {title: 'LOGGED IN'});
+}
+
+routes.playSong = function(req, res) {
+// necessary code to play music with lame,
+// needs to be wrapped in function calling
+// the Spotify API
+
+// Don't think I need this options stuff
+  var options = {
+    url: "https://api.spotify.com/v1/tracks/"+"32OlwWuMpZ6b0aN2RZOeMS"
+    // url: "https://api.spotify.com/v1/tracks/"+{id}
+  }
+  request.get(function (err, track) {
+    if (err) throw err;
+    console.log('playing song');
+    track.play()
+        .pipe(new lame.Decoder())
+        .pipe(new Speaker());
+  });
 }
 
 routes.login = function(req, res) {
