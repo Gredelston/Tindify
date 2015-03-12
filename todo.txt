@@ -1,0 +1,9 @@
+-Login check/redirect
+-Retrieve 30-second clip
+-Play 30-second clip in browser
+-Create a playlist
+-Add a song to a playlist
+-Verify whether a playlist already exists
+-Get a list of songs to use
+-Swipe left/right functionality
+-CSS, nav stuff, you know.
