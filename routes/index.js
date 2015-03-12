@@ -31,7 +31,7 @@ routes.getUser = function(req, res) {
   var options = {
     url: "https://api.spotify.com/v1/users/1236809392/playlists",
     headers: {
-      Authorization: req.user.token
+      Authorization: "Bearer " + req.user.token
     }
   }
   request.get(options, function (error, response, body) {
