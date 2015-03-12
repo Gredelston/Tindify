@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/Gredelston/Tinderfy",
   "devDependencies": {
-    "express": "^4.12.2"
+    "express": "^4.12.2",
+    "passport": "^0.2.1",
+    "passport-spotify": "^0.2.0"
   },
   "dependencies": {
     "body-parser": "^1.12.0",
@@ -27,6 +29,7 @@
     "express-session": "^1.10.3",
     "mongoose": "^3.8.24",
     "morgan": "^1.5.1",
-    "querystring": "^0.2.0"
+    "querystring": "^0.2.0",
+    "request": "^2.53.0"
   }
 }
