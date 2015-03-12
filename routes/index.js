@@ -2,6 +2,7 @@ var url = require('url');
 var path = require('path');
 var querystring = require('querystring');
 var https = require('https');
+var request = require('request');
 
 // var spotifyAuthKeys = require('./spotifyAuthKeys');
 // var mg_models = require('./mg_models');
@@ -28,15 +29,13 @@ routes.getUser = function(req, res) {
   console.log("GET USER GET USER GET USER");
   console.log(req.user.token)
   var options = {
-    host: "https://api.spotify.com",
-    path: "/v1/users/1236809392/playlists"
+    url: "https://api.spotify.com/v1/users/1236809392/playlists",
+    headers: {
+      Authorization: req.user.token
+    }
   }
-  https.get(options,
-    function (response) {
-      response.setEncoding('utf8');
-      response.on("data", function(chunk) {
-        console.log("BODY: " + chunk)
-      })
+  request.get(options, function (error, response, body) {
+      console.log("BODY: " + body)
     });
   res.render('home', {title: 'TTINDINDS'});
 }
