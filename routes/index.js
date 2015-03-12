@@ -47,10 +47,11 @@ routes.playSong = function(req, res) {
 
 // Don't think I need this options stuff
   var options = {
-    url: "https://api.spotify.com/v1/tracks/"+"32OlwWuMpZ6b0aN2RZOeMS"
+    url: "https://api.spotify.com/v1/tracks/"
     // url: "https://api.spotify.com/v1/tracks/"+{id}
   }
-  request.get(function (err, track) {
+  var uri = 'spotify:track:32OlwWuMpZ6b0aN2RZOeMS';
+  request.get(uri, function (err, track) {
     if (err) throw err;
     console.log('playing song');
     track.play()
@@ -58,6 +59,8 @@ routes.playSong = function(req, res) {
         .pipe(new Speaker());
   });
 }
+// Need to look into this, found docs at
+// https://github.com/TooTallNate/node-spotify-web
 
 routes.login = function(req, res) {
 

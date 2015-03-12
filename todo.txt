@@ -7,3 +7,5 @@ DONE-Login check/redirect
 -Get a list of songs to use
 -Swipe left/right functionality
 -CSS, nav stuff, you know.
+
+Should we make var options global? It's used many times
