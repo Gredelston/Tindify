@@ -26,8 +26,12 @@ routes.authed = function(req, res) {
 
 routes.getUser = function(req, res) {
   console.log("GET USER GET USER GET USER");
-  console.log(req.session)
-  https.get("https://api.spotify.com/v1/users/1236809392/playlists",
+  console.log(req.user.token)
+  var options = {
+    host: "https://api.spotify.com",
+    path: "/v1/users/1236809392/playlists"
+  }
+  https.get(options,
     function (response) {
       response.setEncoding('utf8');
       response.on("data", function(chunk) {
