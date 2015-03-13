@@ -33,6 +33,7 @@ var randomChoice = function(arr) {
 
 // Finds the IDs of a bunch of tracks we care about,
 // and stores them in the session under req.session.tracks
+// We hates how big this function are.
 routes.findSongs = function(req, res) {
   // Get a random category from the front page
   var categoriesOptions = {
@@ -62,13 +63,25 @@ routes.findSongs = function(req, res) {
         headers: { Authorization: 'Bearer ' + req.user.token }
       };
       request.get(tracksOptions, function (terror, tresponse, tbody) {
-        console.log(JSON.parse(tbody));
         var tracks = JSON.parse(tbody).items;
-        tracks = (tracks.map(function (t) {return t.track.id}));
+        tracks = (tracks.map(function (t) {return t.track.href}));
         req.session.tracks = tracks;
-        console.log(req.session.tracks);
+        res.redirect('/playSong');
       })
     });
+  });
+}
+
+// Play the zeroeth track.
+routes.playSong = function(req, res) {
+  var trackOptions = {
+    url: req.session.tracks[0],
+    headers: { Authorization: 'Bearer ' + req.user.token }
+  };
+  request.get(trackOptions, function (terror, tresponse, tbody) {
+    tbody = JSON.parse(tbody);
+    console.log("NAME: " + tbody.name);
+    res.render('playSong', {trackName: tbody.name, previewURL: tbody.preview_url});
   });
 }
 

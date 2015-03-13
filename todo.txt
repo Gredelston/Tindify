@@ -1,6 +1,6 @@
 DONE-Login check/redirect
--Retrieve 30-second clip
--Play 30-second clip in browser
+DONE-Retrieve 30-second clip
+DONE-Play 30-second clip in browser
 -Create a playlist
 -Add a song to a playlist
 -Verify whether a playlist already exists
