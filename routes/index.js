@@ -22,7 +22,6 @@ routes.home = function(req, res) {
 
 routes.authed = function(req, res) {
   res.redirect('/getPlaylist');
-  // res.render('authed', {title: 'logged in'});
 }
 
 routes.getPlaylist = function(req, res) {
