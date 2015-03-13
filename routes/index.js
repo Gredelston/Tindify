@@ -26,21 +26,23 @@ routes.authed = function(req, res) {
 }
 
 routes.getUser = function(req, res) {
-  console.log(getCategories(req));
+  res.redirect('/findSongs');
   res.render('home', {title: 'LOGGED IN'});
 }
 
-function getCategories(req) {
-  var options = {
+routes.findSongs = function(req, res) {
+  // finds all the song urls
+  var categoriesOptions = {
     url: 'https://api.spotify.com/v1/browse/categories',
     headers: {
       Authorization: 'Bearer ' + req.user.token
     }
   }
-  request.get(options, function (error, response, body) {
+  request.get(categoriesOptions, function (error, response, body) {
     // console.log(JSON.parse(body).categories.items);
     var categories = JSON.parse(body).categories.items;
-    return categories.map(function(c) {return c.id});
+    console.log(categories.map(function(c) {return c.href}));
+    // return categories.map(function(c) {return c.id});
   });
 }
 

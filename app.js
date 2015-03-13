@@ -65,6 +65,7 @@ app.get('/authed',
     index.authed);
 app.get('/getUser',	ensureAuthenticated, index.getUser);
 app.get('/playSong', index.playSong);
+app.get('/findSongs', index.findSongs);
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
