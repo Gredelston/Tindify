@@ -1,9 +1,26 @@
+/**
+ * Called when you click left to skip a song.
+ * Will make an AJAX call to remove this song from the queue,
+ * and then reload this page to start playing the new song.
+ */
 var skipSong = function() {
 	console.log("Skipping");
 	$.post('/skipSong')
-		.done(function() {window.location.replace('/playSong')});
+		.done(function(data, status) {
+			console.log(data);
+			if (data=="0") {
+				window.location.replace('/findSongs');
+			} else {
+				window.location.replace('/playSong');
+			}
+		});
 }
 
+/**
+ * Called when you click right to add a song to your playlist.
+ * Will make an AJAX call to add the song,
+ * and then call skipSong() to move to the next track.
+ */
 var addSong = function() {
 	console.log("Adding");
 	$.post('/addSong')
@@ -14,6 +31,7 @@ $(document).ready(function() {
 	var leftPressed = false;
 	var rightPressed = false;
 
+	// When you click the buttons, do the things.
 	$("#skipSong").on('click',skipSong);
 	$("#addSong").on('click',addSong);
 

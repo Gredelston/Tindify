@@ -55,7 +55,7 @@ div#nav a {
   float: left;
 }
 div#nav a#nav {
-  text-align: center;
+  text-align: center;#ECF0#ECF0F1F1
   padding: 10px 15px 0px 15px;
 }
 div#nav img {
@@ -67,4 +67,12 @@ div#main {
   margin: 0;
   padding: 0;
   display: inline;
+}
+
+h4 {
+  color: #ECF0F1
+}
+
+#changePlaylist {
+  text-decoration: underline;
 }

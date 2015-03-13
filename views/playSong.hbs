@@ -1,3 +1,5 @@
+<!--Player page for one track, from which you can add or skip the track -->
+
 <h1>
 	{{trackName}}
 </h1>
@@ -7,5 +9,14 @@
 <br>
 <button id="skipSong">Skip</button>
 <button id="addSong">Add</button>
+<br>
+<p id="playlistInfo">
+	<h4>
+		Currently pulling tracks from '{{playlistName}}'.
+		<a href="findSongs" id="changePlaylist">
+			(Want a different sound?)
+		</a>
+	</h4>
+</p>
 
 <script type="text/javascript" src="javascripts/swipe.js"></script>
