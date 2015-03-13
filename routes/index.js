@@ -24,7 +24,7 @@ routes.home = function(req, res) {
  * Callback URI for when the user is logged in.
  */
 routes.authed = function(req, res) {
-  res.render('authed', {title: 'logged in'});
+  res.redirect('/getPlaylist');
 }
 
 /**
@@ -131,8 +131,10 @@ routes.playSong = function(req, res) {
   request.get(trackOptions, function (terror, tresponse, tbody) {
     tbody = JSON.parse(tbody);
     console.log("NAME: " + tbody.name);
+    var artists = tbody.artists.map(function(a) {return a.name}).join(', ');
     res.render('playSong', {
       trackName: tbody.name,
+      artistName: artists,
       previewURL: tbody.preview_url,
       playlistName: req.session.playlistName
     });
@@ -182,9 +184,5 @@ routes.skipSong = function(req, res) {
 }
 
 routes.login = function(req, res) {};
-
-routes.about = function(req, res) {
-  res.render('about', {title: 'Tindify'});
-}
 
 module.exports = routes;

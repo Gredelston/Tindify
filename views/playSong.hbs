@@ -3,12 +3,17 @@
 <h1>
 	{{trackName}}
 </h1>
-<audio controls autoplay>
-  <source src={{previewURL}} type="audio/mpeg">
-</audio>
-<br>
+<h2>
+  {{artistName}}
+</h2>
 <button id="skipSong">Skip</button>
 <button id="addSong">Add</button>
+<br>
+<div id="player">
+  <audio controls autoplay>
+    <source src={{previewURL}} type="audio/mpeg">
+  </audio>
+</div>
 <br>
 <p id="playlistInfo">
 	<h4>
