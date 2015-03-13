@@ -26,18 +26,22 @@ routes.authed = function(req, res) {
 }
 
 routes.getUser = function(req, res) {
-  console.log("GET USER GET USER GET USER");
-  console.log(req.user.token)
+  console.log(getCategories(req));
+  res.render('home', {title: 'LOGGED IN'});
+}
+
+function getCategories(req) {
   var options = {
-    url: "https://api.spotify.com/v1/users/"+req.user.id+"/playlists",
+    url: 'https://api.spotify.com/v1/browse/categories',
     headers: {
-      Authorization: "Bearer " + req.user.token
+      Authorization: 'Bearer ' + req.user.token
     }
   }
   request.get(options, function (error, response, body) {
-      console.log("BODY: " + body)
-    });
-  res.render('home', {title: 'LOGGED IN'});
+    console.log(body.categories);
+    var categories = body.categories.items;
+    return categories.map(function(c) {return c.id});
+  });
 }
 
 routes.playSong = function(req, res) {
@@ -47,7 +51,6 @@ routes.playSong = function(req, res) {
 
 // Don't think I need this options stuff
   var options = {
-    url: "https://api.spotify.com/v1/tracks/"
     // url: "https://api.spotify.com/v1/tracks/"+{id}
   }
   var uri = 'spotify:track:32OlwWuMpZ6b0aN2RZOeMS';
