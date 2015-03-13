@@ -38,8 +38,8 @@ function getCategories(req) {
     }
   }
   request.get(options, function (error, response, body) {
-    console.log(body.categories);
-    var categories = body.categories.items;
+    // console.log(JSON.parse(body).categories.items);
+    var categories = JSON.parse(body).categories.items;
     return categories.map(function(c) {return c.id});
   });
 }

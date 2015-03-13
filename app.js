@@ -56,7 +56,7 @@ passport.use(new SpotifyStrategy({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/', index.home);
+app.get('/', ensureAuthenticated, index.home);
 app.get('/login',
 	passport.authenticate('spotify', {scope: 'user-read-private user-read-email'}),
 	index.login);
