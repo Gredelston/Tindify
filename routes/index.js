@@ -122,7 +122,29 @@ routes.playSong = function(req, res) {
 
 routes.addSong = function(req, res) {
   console.log("Adding a song!");
-  res.end();  
+  uID = req.user.id;
+  pID = req.session.pID;
+
+  // Get the URI of the track
+  var getURIOptions = {
+    url: req.session.tracks[0],
+    headers: { Authorization: 'Bearer ' + req.user.token }
+  }
+  request.get(getURIOptions, function(uerror, uresponse, ubody) {
+    ubody = JSON.parse(ubody);
+    var uri = ubody.uri;
+
+    var addTrackOptions = {
+      url: 'https://api.spotify.com/v1/users/'+uID+'/playlists/'+pID+'/tracks',
+      headers: {
+        Authorization: 'Bearer ' + req.user.token,
+        "Content-Type": "application/json" },
+      body: JSON.stringify({'uris': [uri]}),
+      dataType: 'json' };
+    request.post(addTrackOptions, function(aerror, aresponse, abody) {
+      res.end();  
+    });
+  });
 }
 
 routes.skipSong = function(req, res) {
