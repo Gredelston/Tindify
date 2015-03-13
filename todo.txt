@@ -1,8 +1,8 @@
 DONE-Login check/redirect
 DONE-Retrieve 30-second clip
 DONE-Play 30-second clip in browser
--Create a playlist
--Add a song to a playlist
+DONE-Create a playlist
+DONE-Add a song to a playlist
 DONE-Verify whether a playlist already exists
 DONE-Get a list of songs to use
 DONE-Swipe left/right functionality
