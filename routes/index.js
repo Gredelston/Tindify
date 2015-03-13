@@ -5,12 +5,6 @@ var https = require('https');
 var request = require('request');
 var session = require('express-session');
 
-// Spotify OAuth
-var redirect_uri = 'http://localhost:3000/authed'; 
-var stateKey = 'spotify_auth_state';
-var client_id = require('./spotifyAuthKeys').client_id;
-var mg_models = require('./mg_models');
-
 var PLAYLIST_NAME = "Tindify";
 
 var routes = {};
