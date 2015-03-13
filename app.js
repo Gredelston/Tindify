@@ -41,7 +41,7 @@ passport.deserializeUser(function(user, done) {
 passport.use(new SpotifyStrategy({
     clientID: client_id,
     clientSecret: client_secret,
-    callbackURL: "http://localhost:3000/authed"
+    callbackURL: "http://tindify.herokuapp.com/authed"
   },
   function(accessToken, refreshToken, profile, done) {
     // User.findOrCreate({ spotifyId: profile.id }, function (err, user) {
