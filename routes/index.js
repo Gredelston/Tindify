@@ -85,46 +85,7 @@ routes.playSong = function(req, res) {
   });
 }
 
-// routes.playSong = function(req, res) {
-// // necessary code to play music with lame,
-// // needs to be wrapped in function calling
-// // the Spotify API
 
-// // Don't think I need this options stuff
-//   var options = {
-//     // url: "https://api.spotify.com/v1/tracks/"+{id}
-//   }
-//   var uri = 'spotify:track:32OlwWuMpZ6b0aN2RZOeMS';
-//   request.get(uri, function (err, track) {
-//     if (err) throw err;
-//     console.log('playing song');
-//     track.play()
-//         .pipe(new lame.Decoder())
-//         .pipe(new Speaker());
-//   });
-// }
-// Need to look into this, found docs at
-// https://github.com/TooTallNate/node-spotify-web
-
-routes.login = function(req, res) {
-
-  // var client_id = process.env.SPOTIFY_KEY;
-  // var client_secret = process.env.SPOTIFY_SECRET;
-  // var redirect_uri = 'http://localhost:3000/authed';
-  // var stateKey = 'spotify_auth_state';
-  // var state = generateRandomString(16);
-  // res.cookie(stateKey, state);
-
-  // // your application requests authorization
-  // var scope = 'user-read-private user-read-email';
-  // res.redirect('https://accounts.spotify.com/authorize?' +
-  //   querystring.stringify({
-  //     response_type: 'code',
-  //     client_id: client_id,
-  //     scope: scope,
-  //     redirect_uri: redirect_uri,
-  //     state: state
-  //   }));
-};
+routes.login = function(req, res) {};
 
 module.exports = routes;
