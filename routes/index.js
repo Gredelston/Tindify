@@ -3,10 +3,7 @@ var path = require('path');
 var querystring = require('querystring');
 var https = require('https');
 var request = require('request');
-
-// Play audio
-var lame = require('lame');
-var Speaker = require('speaker');
+var session = require('express-session');
 
 // Spotify OAuth
 var redirect_uri = 'http://localhost:3000/authed'; 
@@ -27,43 +24,72 @@ routes.authed = function(req, res) {
 
 routes.getUser = function(req, res) {
   res.redirect('/findSongs');
-  res.render('home', {title: 'LOGGED IN'});
+  // res.render('home', {title: 'LOGGED IN'});
 }
 
+var randomChoice = function(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+// Finds the IDs of a bunch of tracks we care about,
+// and stores them in the session under req.session.tracks
 routes.findSongs = function(req, res) {
-  // finds all the song urls
+  // Get a random category from the front page
   var categoriesOptions = {
     url: 'https://api.spotify.com/v1/browse/categories',
-    headers: {
-      Authorization: 'Bearer ' + req.user.token
-    }
-  }
+    headers: { Authorization: 'Bearer ' + req.user.token }
+  };
   request.get(categoriesOptions, function (error, response, body) {
-    // console.log(JSON.parse(body).categories.items);
     var categories = JSON.parse(body).categories.items;
-    console.log(categories.map(function(c) {return c.href}));
-    // return categories.map(function(c) {return c.id});
+    categories = (categories.map(function(c) {return c.href}));
+    var categoryURL = randomChoice(categories);
+    console.log("USING CATEGORY: " + categoryURL);
+
+    // Get a random playlist from that category
+    var playlistOptions = {
+      url: categoryURL+'/playlists',
+      headers: { Authorization: 'Bearer ' + req.user.token }
+    };
+    request.get(playlistOptions, function (perror, presponse, pbody) {
+      var playlists = JSON.parse(pbody).playlists.items;
+      playlists = (playlists.map(function (p) {return p.href}))
+      var playlistURL = randomChoice(playlists);
+      console.log("USING PLAYLIST: " + playlistURL); 
+
+      // Get the full list of tracks from that playlist
+      var tracksOptions = {
+        url: playlistURL+'/tracks',
+        headers: { Authorization: 'Bearer ' + req.user.token }
+      };
+      request.get(tracksOptions, function (terror, tresponse, tbody) {
+        console.log(JSON.parse(tbody));
+        var tracks = JSON.parse(tbody).items;
+        tracks = (tracks.map(function (t) {return t.track.id}));
+        req.session.tracks = tracks;
+        console.log(req.session.tracks);
+      })
+    });
   });
 }
 
-routes.playSong = function(req, res) {
-// necessary code to play music with lame,
-// needs to be wrapped in function calling
-// the Spotify API
+// routes.playSong = function(req, res) {
+// // necessary code to play music with lame,
+// // needs to be wrapped in function calling
+// // the Spotify API
 
-// Don't think I need this options stuff
-  var options = {
-    // url: "https://api.spotify.com/v1/tracks/"+{id}
-  }
-  var uri = 'spotify:track:32OlwWuMpZ6b0aN2RZOeMS';
-  request.get(uri, function (err, track) {
-    if (err) throw err;
-    console.log('playing song');
-    track.play()
-        .pipe(new lame.Decoder())
-        .pipe(new Speaker());
-  });
-}
+// // Don't think I need this options stuff
+//   var options = {
+//     // url: "https://api.spotify.com/v1/tracks/"+{id}
+//   }
+//   var uri = 'spotify:track:32OlwWuMpZ6b0aN2RZOeMS';
+//   request.get(uri, function (err, track) {
+//     if (err) throw err;
+//     console.log('playing song');
+//     track.play()
+//         .pipe(new lame.Decoder())
+//         .pipe(new Speaker());
+//   });
+// }
 // Need to look into this, found docs at
 // https://github.com/TooTallNate/node-spotify-web
 

@@ -64,7 +64,7 @@ app.get('/authed',
     passport.authenticate('spotify', {scope: 'user-read-private user-read-email'}),
     index.authed);
 app.get('/getUser',	ensureAuthenticated, index.getUser);
-app.get('/playSong', index.playSong);
+// app.get('/playSong', index.playSong);
 app.get('/findSongs', index.findSongs);
 
 function ensureAuthenticated(req, res, next) {
