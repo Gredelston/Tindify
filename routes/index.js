@@ -21,7 +21,8 @@ routes.home = function(req, res) {
 }
 
 routes.authed = function(req, res) {
-  res.render('authed', {title: 'logged in'});
+  res.redirect('/getPlaylist');
+  // res.render('authed', {title: 'logged in'});
 }
 
 routes.getPlaylist = function(req, res) {
@@ -115,8 +116,8 @@ routes.playSong = function(req, res) {
   };
   request.get(trackOptions, function (terror, tresponse, tbody) {
     tbody = JSON.parse(tbody);
-    console.log("NAME: " + tbody.name);
-    res.render('playSong', {trackName: tbody.name, previewURL: tbody.preview_url});
+    var artists = tbody.artists.map(function(a) {return a.name}).join(', ');
+    res.render('playSong', {trackName: tbody.name, artistName: artists, previewURL: tbody.preview_url});
   });
 }
 
@@ -156,9 +157,5 @@ routes.skipSong = function(req, res) {
 }
 
 routes.login = function(req, res) {};
-
-routes.about = function(req, res) {
-  res.render('about', {title: 'Tindify'});
-}
 
 module.exports = routes;

@@ -66,14 +66,13 @@ app.get('/authed',
 app.get('/getPlaylist', ensureAuthenticated, index.getPlaylist)
 app.get('/findSongs', ensureAuthenticated, index.findSongs);
 app.get('/playSong', ensureAuthenticated, index.playSong);
-app.get('/about', index.about);
 
 app.post('/skipSong', index.skipSong);
 app.post('/addSong', index.addSong);
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login');
+  res.redirect('/getPlaylist');
 }
 
 var PORT = process.env.PORT || 3000;
