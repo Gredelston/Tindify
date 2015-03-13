@@ -87,7 +87,7 @@ routes.playSong = function(req, res) {
 
 routes.addSong = function(req, res) {
   console.log("Adding a song!");
-  res.redirect('/skipSong');
+  res.end();  
 }
 
 routes.skipSong = function(req, res) {
@@ -95,8 +95,6 @@ routes.skipSong = function(req, res) {
   req.session.tracks = req.session.tracks.slice(1);
   if (req.session.tracks.length != 0) {
     res.redirect('/playSong');
-  } else {
-    res.redirect('/');
   }
 }
 
