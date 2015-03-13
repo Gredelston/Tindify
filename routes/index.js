@@ -36,8 +36,7 @@ routes.getPlaylist = function(req, res) {
     var correct = pbody.items.filter(function(p) {
       return p.name == PLAYLIST_NAME
     });
-    console.log(correct);
-
+    
     if (correct.length) {
       // If the playlist already exists, then log its id and redirect to the next step.
       req.session.pID = correct[0].id;
@@ -45,22 +44,23 @@ routes.getPlaylist = function(req, res) {
     } else {
       // Otherwise, create a new playlist (POST request), log its id, and redirect.
       var newPlaylistOptions = {
-        url: 'https://api.spotify.com/v1/user/'+uID+'/playlists',
+        url: 'https://api.spotify.com/v1/users/'+uID+'/playlists',
         headers: {
           Authorization: 'Bearer ' + req.user.token,
-          "Content-Type": "application/json"
-        },
-        name: PLAYLIST_NAME
-      };
-      request.post(newPlaylistOptions, function (nerror, nresponse, nbody) {
+          "Content-Type": "application/json" },
+         body: JSON.stringify({'name': PLAYLIST_NAME}),
+         dataType: 'json' };
+      console.log(newPlaylistOptions);
+      request.post(newPlaylistOptions, function(nerror, nresponse, nbody) {
         console.log("NBODY: " + nbody);
         req.session.pID = JSON.parse(nbody).id;
+        res.redirect('/findSongs');
       });
-      res.redirect('/findSongs')
     }
   });
 }
 
+// Randomly select one element from an array.
 var randomChoice = function(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
@@ -108,6 +108,7 @@ routes.findSongs = function(req, res) {
 
 // Play the zeroeth track.
 routes.playSong = function(req, res) {
+  console.log("THE ID IS...." + req.session.pID)
   var trackOptions = {
     url: req.session.tracks[0],
     headers: { Authorization: 'Bearer ' + req.user.token }
