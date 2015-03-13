@@ -157,4 +157,8 @@ routes.skipSong = function(req, res) {
 
 routes.login = function(req, res) {};
 
+routes.about = function(req, res) {
+  res.render('about', {title: 'Tindify'});
+}
+
 module.exports = routes;
