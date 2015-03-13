@@ -58,15 +58,14 @@ app.use(passport.session());
 
 app.get('/', ensureAuthenticated, index.home);
 app.get('/login',
-	passport.authenticate('spotify', {scope: 'user-read-private user-read-email'}),
+	passport.authenticate('spotify', {scope: 'user-read-private user-read-email playlist-modify-public playlist-modify-private'}),
 	index.login);
 app.get('/authed',
-    passport.authenticate('spotify', {scope: 'user-read-private user-read-email'}),
+    passport.authenticate('spotify', {scope: 'user-read-private user-read-email playlist-modify-public playlist-modify-private'}),
     index.authed);
-app.get('/getUser',	ensureAuthenticated, index.getUser);
-// app.get('/playSong', index.playSong);
-app.get('/findSongs', index.findSongs);
-app.get('/playSong', index.playSong);
+app.get('/getPlaylist', ensureAuthenticated, index.getPlaylist)
+app.get('/findSongs', ensureAuthenticated, index.findSongs);
+app.get('/playSong', ensureAuthenticated, index.playSong);
 
 app.post('/skipSong', index.skipSong);
 app.post('/addSong', index.addSong);

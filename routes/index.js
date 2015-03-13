@@ -11,6 +11,8 @@ var stateKey = 'spotify_auth_state';
 var client_id = require('./spotifyAuthKeys').client_id;
 var mg_models = require('./mg_models');
 
+var PLAYLIST_NAME = "Tindify";
+
 var routes = {};
 
 /* Renders the homepage (/) */
@@ -22,9 +24,41 @@ routes.authed = function(req, res) {
   res.render('authed', {title: 'logged in'});
 }
 
-routes.getUser = function(req, res) {
-  res.redirect('/findSongs');
-  // res.render('home', {title: 'LOGGED IN'});
+routes.getPlaylist = function(req, res) {
+  console.log("ID: " + req.user.id);
+  var uID = req.user.id;
+  var playlistsOptions = {
+    url: 'https://api.spotify.com/v1/users/'+uID+'/playlists',
+    headers: { Authorization: 'Bearer ' + req.user.token}
+  };
+  request.get(playlistsOptions, function(perror, presponse, pbody) {
+    pbody = JSON.parse(pbody);
+    var correct = pbody.items.filter(function(p) {
+      return p.name == PLAYLIST_NAME
+    });
+    console.log(correct);
+
+    if (correct.length) {
+      // If the playlist already exists, then log its id and redirect to the next step.
+      req.session.pID = correct[0].id;
+      res.redirect('/findSongs');
+    } else {
+      // Otherwise, create a new playlist (POST request), log its id, and redirect.
+      var newPlaylistOptions = {
+        url: 'https://api.spotify.com/v1/user/'+uID+'/playlists',
+        headers: {
+          Authorization: 'Bearer ' + req.user.token,
+          "Content-Type": "application/json"
+        },
+        name: PLAYLIST_NAME
+      };
+      request.post(newPlaylistOptions, function (nerror, nresponse, nbody) {
+        console.log("NBODY: " + nbody);
+        req.session.pID = JSON.parse(nbody).id;
+      });
+      res.redirect('/findSongs')
+    }
+  });
 }
 
 var randomChoice = function(arr) {
