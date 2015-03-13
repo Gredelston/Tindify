@@ -85,6 +85,20 @@ routes.playSong = function(req, res) {
   });
 }
 
+routes.addSong = function(req, res) {
+  console.log("Adding a song!");
+  res.redirect('/skipSong');
+}
+
+routes.skipSong = function(req, res) {
+  console.log("Skipping a song!");
+  req.session.tracks = req.session.tracks.slice(1);
+  if (req.session.tracks.length != 0) {
+    res.redirect('/playSong');
+  } else {
+    res.redirect('/');
+  }
+}
 
 routes.login = function(req, res) {};
 

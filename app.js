@@ -68,6 +68,9 @@ app.get('/getUser',	ensureAuthenticated, index.getUser);
 app.get('/findSongs', index.findSongs);
 app.get('/playSong', index.playSong);
 
+app.post('/skipSong', index.skipSong);
+app.post('/addSong', index.addSong);
+
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
   res.redirect('/login');
