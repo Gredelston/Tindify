@@ -1,6 +1,7 @@
 body {
   margin: 0;
   background-color: #22221F;
+  overflow: hidden;
 }
 h1 {
   font-family: 'Roboto', sans-serif;
@@ -32,10 +33,11 @@ a#login {
   margin: 0px 15px;
 }
 div#nav {
+  overflow: hidden;
   width: 100px;
   float: left;
   display: inline;
-  height: 759px;
+  height: 2000px;
   margin: 0;
   padding: 15px;
   margin-right: 10px;
