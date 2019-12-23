@@ -27,7 +27,7 @@
     "express": "^4.12.2",
     "express-handlebars": "^1.2.1",
     "express-session": "^1.10.3",
-    "mongoose": "^3.8.24",
+    "mongoose": "^5.8.2",
     "morgan": "^1.5.1",
     "querystring": "^0.2.0",
     "request": "^2.53.0"
